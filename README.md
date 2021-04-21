@@ -10,6 +10,16 @@
 npm install --save @ibmdotcom/think-banner
 ```
 
+## Running Locally
+As recommended by create-react-library docs, it’s better to open two terminal windows (or tabs). In the first one, run rollup to watch your src/ module and automatically recompile it into dist/ whenever you make changes.
+```
+cd ibm-dotcom-think-banner && npm start
+```
+In the second terminal: 
+```
+cd ibm-dotcom-think-banner/example && npm start
+```
+
 ## Usage
 
 ```jsx
