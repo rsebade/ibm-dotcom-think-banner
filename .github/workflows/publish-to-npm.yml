@@ -1,4 +1,4 @@
-  name: ibmdotcom-think-banner
+  name: publish-to-npm
   on: push
 
   jobs:
