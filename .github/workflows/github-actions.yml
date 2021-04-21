@@ -11,6 +11,6 @@
             node-version: 10
         - run: yarn install
         - run: yarn test
-        - uses: JS-DevTools/yarn-publish@v1
+        - uses: JS-DevTools/npm-publish@v1
           with:
             token: ${{ secrets.NPM_TOKEN }}
