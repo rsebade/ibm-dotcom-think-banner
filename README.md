@@ -15,22 +15,41 @@ As recommended by create-react-library docs, it’s better to open two terminal 
 ```
 cd ibm-dotcom-think-banner && npm start
 ```
-In the second terminal: 
+In the second terminal:
 ```
 cd ibm-dotcom-think-banner/example && npm start
 ```
 
 ## Usage
 
+The most common usage will be to replace the Masthead/DotcomShell component from @carbon/ibmdotcom-react with the component in this package. These components have the same props as the original, except they also have a `hasBanner` prop. If `hasBanner` is enabled, the think-banner will be displayed above the masthead.
+
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from '@ibmdotcom/think-banner'
+import DotcomShell from '@ibmdotcom/think-banner'
 import '@ibmdotcom/think-banner/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <DotcomShell mastheadProps={hasBanner:true, ...mastheadProps} footerProps={...footerProps}>
+      {...children}
+    </DotcomShell>
+  }
+}
+```
+
+The banner can also be imported standalone to be used within a page:
+
+```jsx
+import React, { Component } from 'react'
+
+import Banner from '@ibmdotcom/think-banner'
+import '@ibmdotcom/think-banner/dist/index.css'
+
+class Example extends Component {
+  render() {
+    return <Banner />
   }
 }
 ```

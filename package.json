@@ -12,8 +12,8 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "microbundle-crl --no-compress --format modern,cjs --css-modules false --external='react,react-dom,react-is' --jsxFragment React.Fragment",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs --css-modules false --external='react,react-dom,react-is' --jsxFragment React.Fragment",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -24,10 +24,19 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "@carbon/ibmdotcom-react": "^1.18.0",
+    "@carbon/ibmdotcom-services": "^1.18.0",
+    "@carbon/ibmdotcom-utilities": "^1.18.0",
+    "react": "^16.8.0"
   },
   "devDependencies": {
+    "@carbon/ibmdotcom-react": "1.18.1-rc.0",
+    "@carbon/ibmdotcom-services": "1.18.1-rc.0",
+    "@carbon/ibmdotcom-utilities": "1.18.1-rc.0",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.0.3",
+    "carbon-components": "10.29.0",
+    "carbon-components-react": "7.29.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
@@ -52,5 +61,8 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "node-sass": "4.14.1"
   }
 }

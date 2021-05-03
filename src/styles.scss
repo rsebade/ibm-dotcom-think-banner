@@ -1,0 +1,271 @@
+/**
+ * Copyright IBM Corp. 2016, 2021
+ *
+ * This source code is licensed under the Apache-2.0 license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+ $dds-prefix: 'dds' !default;
+ $prefix: 'bx' !default;
+
+#masthead-banner {
+  text-decoration: none;
+  color: #ffffff;
+  background: #262626;
+  border-top: 3px solid #262626;
+  border-left: 3px solid #262626;
+  border-right: 3px solid #262626;
+  border-bottom: 3px solid #00bab6;
+  box-sizing: border-box;
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
+  #masthead-banner-content {
+    box-sizing: border-box;
+  }
+
+  &:hover {
+    background: #161616;
+    border-color: transparent;
+    border-bottom: 3px solid #00bab6;
+  }
+
+  &:focus {
+    border: 3px solid #00bab6;
+    outline: none;
+
+    #masthead-banner-content {
+      outline: 1px solid #ffffff;
+    }
+  }
+
+  .masthead-banner--align-center {
+    align-items: center;
+  }
+
+  .masthead-banner--space-between {
+    justify-content: space-between;
+  }
+
+  .masthead-banner--flex {
+    display: flex;
+  }
+
+  .masthead-banner__icon {
+    margin: 0 24px;
+  }
+}
+
+#masthead-banner-desktop {
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#masthead-banner-mobile {
+  height: 75px;
+}
+
+@media (max-width: 659px) {
+  #masthead-banner-desktop {
+    display: none;
+  }
+
+  #masthead-banner-mobile {
+    display: flex;
+  }
+}
+
+@media (min-width: 660px) {
+  #masthead-banner-desktop {
+    display: flex;
+  }
+
+  #masthead-banner-mobile {
+    display: none;
+  }
+}
+
+// THINK BANNER 2020
+#think-banner-link {
+  text-decoration: none;
+  background: #f4f5f6;
+  color: #000000;
+  border: 1px solid #0062ff;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  display: block;
+
+  .ibm-bold {
+    font-weight: 600;
+  }
+
+  &.ibm-alternate-background {
+    color: #ffffff;
+    background: #102c95;
+  }
+
+  #think-banner-content {
+    box-sizing: border-box;
+
+    .video-background {
+      width: auto;
+      height: auto;
+      min-width: 100%;
+      min-height: 100%;
+      position: absolute;
+      top: 50%;
+      left: 65%;
+      transform: translateY(-50%) translateX(-65%);
+      z-index: 0;
+      display: none;
+
+      @media (min-width: 1000px) {
+        display: block;
+      }
+
+      video {
+        width: 50%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%) translateX(-50%);
+      }
+    }
+
+    .align-center {
+      align-items: center;
+    }
+
+    .space-between {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .flex {
+      display: flex;
+      position: relative;
+      z-index: 2;
+    }
+
+    .think-counter {
+      font-size: 3.75rem;
+      letter-spacing: 0;
+      line-height: 4.375rem;
+      padding-right: 16px;
+
+      &__container {
+        flex: 1 1 auto;
+      }
+    }
+
+    .counter-text {
+      line-height: 1.375rem;
+    }
+  }
+
+  &:hover {
+    border-color: transparent;
+  }
+
+  &:focus {
+    border-color: transparent;
+    outline: none;
+
+    #think-banner-content {
+      outline: 1px solid #ffffff;
+    }
+  }
+
+  .think-banner__icon {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
+  @media only screen and (min-width: 0) and (max-width: 579px) {
+    .ibm-hidden-small {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 580px) and (max-width: 759px) {
+    .ibm-hidden-medium {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 760px) and (max-width: 999px) {
+    .ibm-hidden-medium {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 1000px) {
+    .ibm-hidden-large {
+      display: none;
+    }
+  }
+}
+
+#think-banner-desktop {
+  height: 104px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (min-width: 850px) {
+    display: flex;
+  }
+}
+
+#think-banner-mobile {
+  height: 75px;
+  display: flex;
+
+  @media (min-width: 850px) {
+    display: none;
+  }
+}
+
+//Left nav
+
+#think-banner-container + .bx--masthead__announcement-adjustment {
+  .#{$prefix}--masthead .#{$prefix}--side-nav__navigation.#{$prefix}--side-nav__announcement-adjustment {
+      position: absolute;
+    }
+}
+
+//megamenu
+
+#think-banner-container + .bx--masthead__announcement-adjustment {
+  :host(#{$dds-prefix}-megamenu-top-nav-menu),
+  .#{$prefix}--masthead__megamenu__l0-nav {
+    .#{$prefix}--header__menu-title[aria-expanded='true']
+      + .#{$prefix}--header__menu.bx--header__menu-announcement-adjustment {
+        top: calc(75px + var(--cds-spacing-09, 3rem));
+        @media screen and (min-width: 850px) {
+          top: calc(106px + var(--cds-spacing-09, 3rem));
+        }
+      }
+    }
+  }
+
+//masthead
+
+#think-banner-container + .bx--masthead__announcement-adjustment {
+  position: absolute;
+  top: 75px;
+  @media screen and (min-width: 850px) {
+    top: 106px;
+  }
+  .#{$prefix}--masthead__overlay-announcement-adjustment{
+    top: 123px;
+    @media screen and (min-width: 850px) {
+      top: 154px;
+    }
+  }
+}
