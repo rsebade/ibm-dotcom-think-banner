@@ -1,7 +1,19 @@
-import { ExampleComponent } from '.'
+import { Banner, DotcomShell, Masthead } from '.'
 
-describe('ExampleComponent', () => {
+describe('Banner', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(Banner).toBeTruthy()
+  })
+})
+
+describe('Masthead', () => {
+  it('is truthy', () => {
+    expect(Masthead).toBeTruthy()
+  })
+})
+
+describe('DotcomShell', () => {
+  it('is truthy', () => {
+    expect(DotcomShell).toBeTruthy()
   })
 })
