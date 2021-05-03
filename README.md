@@ -20,6 +20,11 @@ In the second terminal:
 cd ibm-dotcom-think-banner/example && npm start
 ```
 
+Also, create a `.env` file in the example directory and add the following to ensure the sass path compiles correctly
+```
+SASS_PATH=node_modules:src
+```
+
 ## Usage
 
 The most common usage will be to replace the Masthead/DotcomShell component from @carbon/ibmdotcom-react with the component in this package. These components have the same props as the original, except they also have a `hasBanner` prop. If `hasBanner` is enabled, the think-banner will be displayed above the masthead.
