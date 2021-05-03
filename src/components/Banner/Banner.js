@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 
 import BannerAPI from '../../services/Banner/Banner';
 import { ArrowRight24 } from '@carbon/icons-react';
-import { Button } from '@carbon/ibmdotcom-react/es/internal/vendor/carbon-components-react';
+import { Button } from 'carbon-components-react';
 import ddsSettings from '@carbon/ibmdotcom-utilities/es/utilities/settings/settings';
 import LocaleAPI from '@carbon/ibmdotcom-services/es/services/Locale/Locale';
 import settings from 'carbon-components/es/globals/js/settings';
