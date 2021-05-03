@@ -27,37 +27,29 @@ SASS_PATH=node_modules:src
 
 ## Usage
 
-The most common usage will be to replace the Masthead/DotcomShell component from @carbon/ibmdotcom-react with the component in this package. These components have the same props as the original, except they also have a `hasBanner` prop. If `hasBanner` is enabled, the think-banner will be displayed above the masthead.
-
-```jsx
-import React, { Component } from 'react'
-
-import { DotcomShell } from '@ibmdotcom/think-banner'
-import '@ibmdotcom/think-banner/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <DotcomShell mastheadProps={{hasBanner:true, ...mastheadProps}} footerProps={{...footerProps}}>
-      {children}
-    </DotcomShell>
-  }
-}
-```
-
-The banner can also be imported standalone to be used within a page:
+The banner should be added above either the DotcomShell or Masthead component from @carbon/ibmdotcom-react
 
 ```jsx
 import React, { Component } from 'react'
 
 import { Banner } from '@ibmdotcom/think-banner'
+import { DotcomShell } from '@carbon/ibmdotcom-react'
 import '@ibmdotcom/think-banner/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <Banner />
+    return (
+      <>
+        <Banner />
+        <DotcomShell mastheadProps={{...mastheadProps}}   footerProps={{...footerProps}}>
+          {children}
+        </DotcomShell>
+      </>
+    )
   }
 }
 ```
+
 
 ## License
 
