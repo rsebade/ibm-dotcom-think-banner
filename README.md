@@ -27,13 +27,13 @@ The most common usage will be to replace the Masthead/DotcomShell component from
 ```jsx
 import React, { Component } from 'react'
 
-import DotcomShell from '@ibmdotcom/think-banner'
+import { DotcomShell } from '@ibmdotcom/think-banner'
 import '@ibmdotcom/think-banner/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <DotcomShell mastheadProps={hasBanner:true, ...mastheadProps} footerProps={...footerProps}>
-      {...children}
+    return <DotcomShell mastheadProps={{hasBanner:true, ...mastheadProps}} footerProps={{...footerProps}}>
+      {children}
     </DotcomShell>
   }
 }
@@ -44,7 +44,7 @@ The banner can also be imported standalone to be used within a page:
 ```jsx
 import React, { Component } from 'react'
 
-import Banner from '@ibmdotcom/think-banner'
+import { Banner } from '@ibmdotcom/think-banner'
 import '@ibmdotcom/think-banner/dist/index.css'
 
 class Example extends Component {

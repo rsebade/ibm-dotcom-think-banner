@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Masthead, Banner, DotcomShell } from '@ibmdotcom/think-banner'
+import { DotcomShell } from '@ibmdotcom/think-banner'
 import '@ibmdotcom/think-banner/dist/index.css'
 import Content from './Content/Content'
 
