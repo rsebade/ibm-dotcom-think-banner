@@ -255,14 +255,16 @@
   }
 
 //masthead
-
+#think-banner-container + .bx--masthead {
+  transition: top 0s linear;
+}
 #think-banner-container + .bx--masthead__announcement-adjustment {
   position: absolute;
   top: 75px;
   @media screen and (min-width: 850px) {
     top: 106px;
   }
-  .#{$prefix}--masthead__overlay-announcement-adjustment{
+  .#{$prefix}--masthead__overlay{
     top: 123px;
     @media screen and (min-width: 850px) {
       top: 154px;

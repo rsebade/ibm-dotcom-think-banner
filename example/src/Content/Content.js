@@ -15,12 +15,9 @@ import {
   CTASection,
   Layout,
   LeadSpaceBlock,
-  LogoGrid,
-  FeatureCardBlockLarge,
   TableOfContents,
 } from '@carbon/ibmdotcom-react';
 
-import { ArrowRight20 } from '@carbon/icons-react';
 import React from 'react';
 
 /**
@@ -107,57 +104,7 @@ const Content = () => (
             copy:
               'Elementum nibh tellus molestie nunc non. Habitant morbi tristique senectus et netus et malesuada fames.',
           },
-          {
-            heading: 'A scelerisque purus semper eget duis at tellus.',
-            copy:
-              'Elementum nibh tellus molestie nunc non. Habitant morbi tristique senectus et netus et malesuada fames.',
-            cta: {
-              type: 'local',
-              copy: 'Lorem Ipsum dolor sit',
-              href: 'https://example.com',
-            },
-          },
-          {
-            heading: 'A scelerisque purus semper eget duis at tellus.',
-            copy:
-              'Elementum nibh tellus molestie nunc non. Habitant morbi tristique senectus et netus et malesuada fames.',
-          },
         ]}
-      />
-
-      <a
-        name="section-3"
-        data-title="Elementum nibh tellus molestie nunc non"
-      />
-      <ContentBlockSegmented
-        heading="Elementum nibh tellus molestie nunc non."
-        items={[
-          {
-            heading: 'A scelerisque purus semper eget duis at tellus.',
-            copy:
-              'Elementum nibh tellus molestie nunc non. Habitant morbi tristique senectus et netus et malesuada fames.',
-            cta: {
-              type: 'local',
-              copy: 'Lorem Ipsum dolor sit',
-              href: 'https://example.com',
-            },
-          },
-          {
-            heading: 'A scelerisque purus semper eget duis at tellus.',
-            copy:
-              'Elementum nibh tellus molestie nunc non. Habitant morbi tristique senectus et netus et malesuada fames.',
-          },
-        ]}
-        cta={{
-          style: 'card',
-          disableImage: true,
-          type: 'video',
-          media: {
-            src: '1_9h94wo6b',
-            type: 'video',
-          },
-        }}
-        mediaType="image"
       />
 
       <CalloutWithMedia
@@ -168,57 +115,6 @@ const Content = () => (
           videoId: '1_9h94wo6b',
         }}
       />
-
-      <a name="section-4" data-title="Tincidunt ornare massa" />
-      <ContentGroupHorizontal
-        heading="Tincidunt ornare massa"
-        items={[
-          {
-            eyebrow: 'Lorem ipsum',
-            heading: 'Aliquam condimentum',
-            copy:
-              'Lorem ipsum dolor sit amet, _consectetur_ adipiscing elit. Aenean et ultricies est. Mauris iaculis eget dolor nec hendrerit. Phasellus at elit sollicitudin.',
-            cta: {
-              heading: 'Aliquam condimentum',
-              items: [
-                {
-                  type: 'local',
-                  copy: 'Link text',
-                  href: 'https://example.com',
-                },
-                {
-                  type: 'external',
-                  copy: 'External link text',
-                  href: 'https://example.com',
-                },
-              ],
-            },
-          },
-          {
-            eyebrow: 'Lorem ipsum',
-            heading: 'Aliquam condimentum',
-            copy:
-              'Lorem ipsum dolor sit amet, _consectetur_ adipiscing elit. Aenean et ultricies est. Mauris iaculis eget dolor nec hendrerit. Phasellus at elit sollicitudin.',
-            cta: {
-              heading: 'Aliquam condimentum',
-              items: [
-                {
-                  type: 'local',
-                  copy: 'Link text',
-                  href: 'https://example.com',
-                },
-                {
-                  type: 'external',
-                  copy: 'External link text',
-                  href: 'https://example.com',
-                },
-              ],
-            },
-          },
-        ]}
-      />
-
-      <a name="section-5" data-title="Lobortis elementum nibh tellus" />
 
       <a name="section-6" data-title="Aliquam condimentum interdum" />
       <ContentBlockCards
@@ -247,21 +143,7 @@ const Content = () => (
           },
         ]}
       />
-      <a name="section-7" data-title="Duis aute irure dolor in reprehenderit" />
-      <CalloutQuote
-        quote={{
-          copy: 'Duis aute irure dolor in reprehenderit',
-          source: {
-            heading: 'Lorem ipsum',
-            copy: 'dolor sit amet',
-          },
-          cta: {
-            copy: 'Link with Icon',
-            type: 'local',
-            href: 'https://example.com',
-          },
-        }}
-      />
+
     </TableOfContents>
     <div className="bx--grid" style={{ backgroundColor: '#f4f4f4' }}>
       <div className="bx--row">
