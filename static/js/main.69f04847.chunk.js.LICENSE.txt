@@ -9,5 +9,3 @@ object-assign
     Licensed under the MIT License (MIT), see
     http://jedwatson.github.io/classnames
   */
-
-// @license MIT
