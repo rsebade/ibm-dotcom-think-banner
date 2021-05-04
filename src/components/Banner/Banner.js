@@ -130,6 +130,8 @@ class Banner extends Component {
       }
     }
     let mastheadHeight = root.document.querySelector('.bx--masthead').offsetHeight;
+    let l0height = root.document.querySelector('.bx--masthead__l0').offsetHeight;
+    let bannerHeight = this.bannerRef.current.offsetHeight;
     let mastheadOffset = root.document?.querySelector('.bx--masthead--sticky.bx--masthead--sticky__l1') ? -48 : 0;
     if (root.pageYOffset < 400) {
       let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight) + mastheadOffset;
@@ -139,6 +141,11 @@ class Banner extends Component {
       for(i = 0; i < length; i++) {
         megamenuArray[i].style.top = `${offset}px`;
       }
+    }
+    if(root.document?.querySelector('.bx--overflow-menu-options--open')){
+      let offset = bannerHeight - root.pageYOffset + (l0height)
+      offset = offset < l0height ? l0height : offset;
+      root.document.querySelector('.bx--overflow-menu-options--open').style.top = `${offset}px`;
     }
   }
 
