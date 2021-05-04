@@ -48,16 +48,17 @@ class Banner extends Component {
           this.changeMastheadClasses();
           let masthead = root.document.querySelector('.bx--masthead');
           var in_dom = root.document.body.contains(masthead);
+          let self = this;
           var observer = new MutationObserver(function() {
-            if (document.body.contains(masthead)) {
-                in_dom = true;
-            } else if (in_dom) {
-                in_dom = false;
-                root.document.querySelector('.bx--masthead').classList.add(`bx--masthead__announcement-adjustment`)
+            if(root.document?.querySelector('.bx--overflow-menu-options--open')){
+              let offset = 106 - root.pageYOffset + (self.state.hasL1 ? 96 : 48)
+              root.document.querySelector('.bx--overflow-menu-options--open').style.top = `${offset}px`;
             }
+            self.changeMastheadClasses();
           })
           observer.observe(root.document.body, {
-            childList: true
+            childList: true,
+            subtree:true
           })
           if(root.document?.querySelector('.bx--masthead')){
             const handleScroll = root.addEventListener('scroll', () => {
@@ -73,6 +74,7 @@ class Banner extends Component {
                 for(var i = 0; i < length; i++) {
                   megamenuArray[i].style.top = `${offset}px`;
                 }
+
               }
             });
             this.setState({
@@ -104,7 +106,8 @@ class Banner extends Component {
     var i;
     if(this.state.scrolledBelow) {
       root.document?.querySelector('.bx--masthead')?.classList.remove(`bx--masthead__announcement-adjustment`)
-      root.document?.querySelector('.bx--side-nav__navigation')?.classList.remove(`bx--side-nav__announcement-adjustment`);
+      root.document?.querySelector('.bx--side-nav__navigation')?.classList.remove(`bx--side-nav__announcement-adjustment`)
+      root.document?.querySelector('.bx--overflow-menu-options--open')?.classList.remove(`bx--overflow-menu-options--open__announcement-adjustment`)
       let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
       let length = megamenuArray.length;
       for(i = 0; i < length; i++) {
@@ -113,6 +116,7 @@ class Banner extends Component {
     } else {
       root.document.querySelector('.bx--masthead').classList.add(`bx--masthead__announcement-adjustment`)
       root.document?.querySelector('.bx--side-nav__navigation')?.classList.add(`bx--side-nav__announcement-adjustment`)
+      root.document?.querySelector('.bx--overflow-menu-options--open')?.classList.add(`bx--overflow-menu-options--open__announcement-adjustment`)
       let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
       let length = megamenuArray.length;
       for(i = 0; i < length; i++) {

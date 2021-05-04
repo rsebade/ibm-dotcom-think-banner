@@ -1188,21 +1188,21 @@
   version "0.0.0"
   uid ""
 
-"@carbon/ibmdotcom-services@1.18.1-rc.0":
-  version "1.18.1-rc.0"
-  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-services/-/ibmdotcom-services-1.18.1-rc.0.tgz#cfd9dfed460bb82fa95b1971b954e946ee41aab5"
-  integrity sha512-2zobcHGC/S7CsBfHhjOhPR+bZjkzpOOlLGaucuoM2bJmLkN/ZZDNgPGWdK9zrFuly7Sht5J0SCu5w7WVMMyhBQ==
+"@carbon/ibmdotcom-services@1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-services/-/ibmdotcom-services-1.18.1.tgz#ac41de85086065018f6a5068083473e10d42c3c6"
+  integrity sha512-LBjpAzsNOtZrFZSCzKOTQ6a1hy0tbDho7AtA5PgGMe2qClA4ADDgFujaZhLDCabWGEBl1XPyXbuKKG5QUKe3mw==
   dependencies:
     "@babel/runtime" "^7.5.0"
-    "@carbon/ibmdotcom-utilities" "1.18.1-rc.0"
+    "@carbon/ibmdotcom-utilities" "1.18.1"
     "@carbon/telemetry" "0.0.0-alpha.6"
     axios "^0.21.1"
     window-or-global "^1.0.1"
 
-"@carbon/ibmdotcom-styles@1.18.1-rc.0":
-  version "1.18.1-rc.0"
-  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-styles/-/ibmdotcom-styles-1.18.1-rc.0.tgz#2a9bd2fe9f8791cc659df16c6faa17670edae9d2"
-  integrity sha512-aH9otCOj/nehlIy706dbGkv3GVNZ3lhrBi4l2Yx9K1ZywwpUkpDy9j0mbnyiuIT/bYIr4KQUp+ASWEyZaZ5UDA==
+"@carbon/ibmdotcom-styles@1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-styles/-/ibmdotcom-styles-1.18.1.tgz#6c761d8498c9b00c5396d52145ca7c4de2cb3fab"
+  integrity sha512-OYhffGqmLJD0AE/ihgCZBDIXFQxbNjmUkU9ZuuinA1W6EIi0UiTkx0zOLjWDJ/6oH57JFZN9eiFNYP6IwLWEuw==
   dependencies:
     "@carbon/grid" "10.24.0"
     "@carbon/icons-react" "10.29.0"
@@ -1215,10 +1215,10 @@
   optionalDependencies:
     carbon-components "10.32.1"
 
-"@carbon/ibmdotcom-utilities@1.18.1-rc.0":
-  version "1.18.1-rc.0"
-  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.18.1-rc.0.tgz#9af39f18e3304de45c3c1895175f5bfc3d67b5c5"
-  integrity sha512-T2lAoTBEcRaoMCxtzCZxBeDbu5lVmaqjMOc8dd40XMIdxOc81pLYx9rCPm5Zwyq213FuQ/C9MhwU7PgxklkyWA==
+"@carbon/ibmdotcom-utilities@1.18.1":
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/@carbon/ibmdotcom-utilities/-/ibmdotcom-utilities-1.18.1.tgz#6058a0d583ce4176a19e054f7d02f5c9567accd7"
+  integrity sha512-a/DZwgN5tfgpKXFiix0fuEnTSnOOPKDMCrwqu3VqGFWjimTEdu6HBM22a+ikBgqWQM2VKHXKbP6qLz+0QViJng==
   dependencies:
     "@carbon/telemetry" "0.0.0-alpha.6"
     axios "^0.21.1"

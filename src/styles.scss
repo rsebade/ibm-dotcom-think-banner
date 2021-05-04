@@ -234,8 +234,11 @@
 //Left nav
 
 #think-banner-container + .bx--masthead__announcement-adjustment {
-  .#{$prefix}--masthead .#{$prefix}--side-nav__navigation.#{$prefix}--side-nav__announcement-adjustment {
+  .#{$prefix}--side-nav__navigation.#{$prefix}--side-nav__announcement-adjustment {
       position: absolute;
+      height: calc(100vh - 3rem);
+      top: 3rem;
+      left: 0;
     }
 }
 
