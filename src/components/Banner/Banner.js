@@ -30,6 +30,9 @@ class Banner extends Component {
       hasL1: root.document?.querySelector('.bx--masthead__l1'),
       docObserver: null
     }
+
+    this.bannerRef = React.createRef();
+
     this.setBandData = this.setBandData.bind(this);
     this.setLocale = this.setLocale.bind(this);
     this.changeMastheadClasses = this.changeMastheadClasses.bind(this);
@@ -49,10 +52,11 @@ class Banner extends Component {
           let masthead = root.document.querySelector('.bx--masthead');
           var in_dom = root.document.body.contains(masthead);
           let self = this;
+          let mastheadHeight = root.document.querySelector('.bx--masthead').offsetHeight;
           var observer = new MutationObserver(function() {
             if(root.document?.querySelector('.bx--overflow-menu-options--open')){
-              let offset = 106 - root.pageYOffset + (self.state.hasL1 ? 96 : 48)
-              offset = offset < 48 ? 48 : offset;
+              let offset = this.bannerRef.current.offsetHeight - root.pageYOffset + (mastheadHeight)
+              offset = offset < mastheadHeight ? mastheadHeight : offset;
               root.document.querySelector('.bx--overflow-menu-options--open').style.top = `${offset}px`;
             }
             self.changeMastheadClasses();
@@ -63,14 +67,10 @@ class Banner extends Component {
           })
           if(root.document?.querySelector('.bx--masthead')){
             const handleScroll = root.addEventListener('scroll', () => {
-              if (root.innerWidth < 850) {
-                this.setIsScrolledBelowAnnouncement(root.pageYOffset > 75, 75);
-              } else {
-                this.setIsScrolledBelowAnnouncement(root.pageYOffset > 106, 106);
-              }
+              this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
               if (root.pageYOffset < 150) {
-                let offset = 106 - root.pageYOffset + (this.state.hasL1 ? 96 : 48)
-                offset = offset < 48 ? 48 : offset;
+                let offset = this.bannerRef.current.offsetHeight - root.pageYOffset + (mastheadHeight)
+                offset = offset < mastheadHeight ? mastheadHeight : offset;
                 let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
                 let length = megamenuArray.length;
                 for(var i = 0; i < length; i++) {
@@ -180,7 +180,7 @@ class Banner extends Component {
       return (
         <div
           data-autoid={`${stablePrefix}--announcement-banner`}
-          id="think-banner-container">
+          id="think-banner-container" ref={this.bannerRef}>
           <a
             id="think-banner-link"
             className="ibm-blocklink ibm-alternate-background"
