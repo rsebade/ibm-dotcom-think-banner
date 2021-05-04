@@ -1,6 +1,7 @@
 import React from 'react'
-import styles from './styles.module.css'
+import styles from './styles.scss'
+import { Banner as BannerComponent } from './components/Banner'
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Think Banner Text: {text}</div>
+export const Banner = () => {
+  return <BannerComponent />
 }

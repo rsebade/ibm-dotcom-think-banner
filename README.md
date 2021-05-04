@@ -15,25 +15,41 @@ As recommended by create-react-library docs, it’s better to open two terminal 
 ```
 cd ibm-dotcom-think-banner && npm start
 ```
-In the second terminal: 
+In the second terminal:
 ```
 cd ibm-dotcom-think-banner/example && npm start
 ```
 
+Also, create a `.env` file in the example directory and add the following to ensure the sass path compiles correctly
+```
+SASS_PATH=node_modules:src
+```
+
 ## Usage
+
+The banner should be added above either the DotcomShell or Masthead component from @carbon/ibmdotcom-react
 
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from '@ibmdotcom/think-banner'
+import { Banner } from '@ibmdotcom/think-banner'
+import { DotcomShell } from '@carbon/ibmdotcom-react'
 import '@ibmdotcom/think-banner/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return (
+      <>
+        <Banner />
+        <DotcomShell mastheadProps={{...mastheadProps}}   footerProps={{...footerProps}}>
+          {children}
+        </DotcomShell>
+      </>
+    )
   }
 }
 ```
+
 
 ## License
 

@@ -1,33 +1,82 @@
 {
-  "parser": "babel-eslint",
   "extends": [
-    "standard",
-    "standard-react",
-    "plugin:prettier/recommended",
-    "prettier/standard",
-    "prettier/react"
+    "./packages/eslint-config-ibmdotcom"
   ],
-  "env": {
-    "node": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "ecmaFeatures": {
-      "legacyDecorators": true,
-      "jsx": true
+  "overrides": [
+    {
+      "files": ["**/overview.js", "**/*.stories.js"],
+      "rules": {
+        "jsdoc/require-jsdoc": 0
+      }
+    },
+    {
+      "files": ["**/*.e2e.js"],
+      "rules": {
+        "jsdoc/require-jsdoc": 0
+      },
+      "env": {
+        "jasmine": true
+      },
+      "globals": {
+        "browser": true,
+        "$": true,
+        "$$": true,
+        "describe": true,
+        "beforeAll": true,
+        "beforeEach": true,
+        "afterAll": true,
+        "afterEach": true,
+        "it": true,
+        "expect": true,
+        "page": true
+      }
+    },
+    {
+      "files": ["**/*_steps.js", "**/*.steps.js"],
+      "globals": {
+        "describe": true,
+        "beforeAll": true,
+        "beforeEach": true,
+        "afterAll": true,
+        "afterEach": true,
+        "it": true,
+        "expect": true,
+        "page": true
+      },
+      "rules": {
+        "no-new": 0,
+        "no-underscore-dangle": 0,
+        "no-unused-expressions": 0
+      }
+    },
+    {
+      "files": [
+        "packages/react/src/components/carbon-components-react/**/*.js",
+        "packages/react/src/internal/keyboard/**/*.js",
+        "packages/react/src/prop-types/**/*.js"
+      ],
+      "rules": {
+        "sort-imports": 0,
+        "jsdoc/require-param-description": 0
+      }
+    },
+    {
+      "files": ["packages/react/tests/**/*.js"],
+      "globals": {
+        "describe": true,
+        "beforeAll": true,
+        "beforeEach": true,
+        "afterAll": true,
+        "afterEach": true,
+        "it": true,
+        "expect": true,
+        "aChecker": true
+      },
+      "rules": {
+        "no-new": 0,
+        "no-underscore-dangle": 0,
+        "no-unused-expressions": 0
+      }
     }
-  },
-  "settings": {
-    "react": {
-      "version": "16"
-    }
-  },
-  "rules": {
-    "space-before-function-paren": 0,
-    "react/prop-types": 0,
-    "react/jsx-handler-names": 0,
-    "react/jsx-fragments": 0,
-    "react/no-unused-prop-types": 0,
-    "import/export": 0
-  }
+  ]
 }

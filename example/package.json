@@ -10,10 +10,13 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
+    "@ibmdotcom/think-banner": "link:..",
+    "node-sass": "4.14.1",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
-    "react-scripts": "link:../node_modules/react-scripts",
-    "@ibmdotcom/think-banner": "link:.."
+    "carbon-components": "link:../node_modules/carbon-components",
+    "@carbon/ibmdotcom-react": "link:../node_modules/@carbon/ibmdotcom-react",
+    "react-scripts": "link:../node_modules/react-scripts"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
