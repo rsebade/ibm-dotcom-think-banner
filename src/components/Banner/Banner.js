@@ -52,6 +52,7 @@ class Banner extends Component {
           var observer = new MutationObserver(function() {
             if(root.document?.querySelector('.bx--overflow-menu-options--open')){
               let offset = 106 - root.pageYOffset + (self.state.hasL1 ? 96 : 48)
+              offset = offset < 48 ? 48 : offset;
               root.document.querySelector('.bx--overflow-menu-options--open').style.top = `${offset}px`;
             }
             self.changeMastheadClasses();
@@ -67,8 +68,9 @@ class Banner extends Component {
               } else {
                 this.setIsScrolledBelowAnnouncement(root.pageYOffset > 106, 106);
               }
-              if (root.pageYOffset < 106) {
+              if (root.pageYOffset < 150) {
                 let offset = 106 - root.pageYOffset + (this.state.hasL1 ? 96 : 48)
+                offset = offset < 48 ? 48 : offset;
                 let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
                 let length = megamenuArray.length;
                 for(var i = 0; i < length; i++) {
