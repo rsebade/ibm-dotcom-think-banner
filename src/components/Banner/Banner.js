@@ -25,10 +25,8 @@ class Banner extends Component {
       bandData: {},
       locale: 'en',
       scrolledBelow: false,
-      adjustAmount: root.innerWidth < 850 ? 75 : 106,
       handleResize: null,
       handleScroll: null,
-      hasL1: root.document?.querySelector('.bx--masthead__l1'),
       docObserver: null
     }
 
@@ -89,22 +87,10 @@ class Banner extends Component {
               docObserver: observer
             })
           }
-          if(root.document?.querySelector('.bx--masthead__l1')){
-            this.setState({
-              ...this.state,
-              hasL1: true
-            })
-          }
         })
         LocaleAPI.getLocale().then(res => {
           this.setLocale(res.lc);
         })
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if(prevState.scrolledBelow !== this.state.scrolledBelow) {
-      this.changeMastheadClasses();
     }
   }
 
@@ -136,6 +122,7 @@ class Banner extends Component {
     if (root.pageYOffset < 400) {
       let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight) + mastheadOffset;
       offset = offset < (mastheadHeight + mastheadOffset) ? (mastheadHeight + mastheadOffset) : offset;
+      offset = offset - 1;
       let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
       let length = megamenuArray.length;
       for(i = 0; i < length; i++) {
@@ -163,11 +150,10 @@ class Banner extends Component {
     })
   }
 
-  setIsScrolledBelowAnnouncement(bool, adjustAmount) {
+  setIsScrolledBelowAnnouncement(bool) {
     this.setState({
       ...this.state,
-      scrolledBelow: bool,
-      adjustAmount: adjustAmount
+      scrolledBelow: bool
     })
   }
 
@@ -175,7 +161,7 @@ class Banner extends Component {
     root.removeEventListener('resize', this.state.handleResize);
     root.removeEventListener('scroll', this.state.handleScroll);
     this.state.docObserver.disconnect();
-}
+  }
 
   render() {
     let locale = this.state.locale;
