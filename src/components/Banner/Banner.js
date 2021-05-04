@@ -42,23 +42,32 @@ class Banner extends Component {
       this.setBandData(this.props.customData);
     } else {
         BannerAPI.getTranslation().then(res => {
+          //Banner API returns an object if it's already in session storage, or an HTTP response if not. Check to see which and store the data in the state.
           if(res.data) {
             this.setBandData(res.data.thinkBanner);
           } else {
             this.setBandData(res.thinkBanner);
           }
+          //Apply initial classes and styles
           this.changeMastheadClasses();
-          let masthead = root.document.querySelector('.bx--masthead');
+
+          //Setup variables for the mutation observer
           let self = this;
-          let mastheadHeight = root.document.querySelector('.bx--masthead').offsetHeight;
+          let masthead = root.document.querySelector('.bx--masthead');
+          let mastheadHeight = masthead.offsetHeight;
           let l0height = root.document.querySelector('.bx--masthead__l0').offsetHeight;
           let bannerHeight = this.bannerRef.current.offsetHeight;
+
+          //Create a mutation observer to manipulate the DOM after React changes state in the Carbon Masthead
           var observer = new MutationObserver(function() {
-            if(root.document?.querySelector('.bx--overflow-menu-options--open')){
+            //The overflow menu gets added to the DOM on trigger, so need to manipulate it here
+            let overflowMenu = root.document?.querySelector('.bx--overflow-menu-options--open');
+            if(overflowMenu){
               let offset = bannerHeight - root.pageYOffset + (l0height)
               offset = offset < l0height ? l0height : offset;
-              root.document.querySelector('.bx--overflow-menu-options--open').style.top = `${offset}px`;
+              overflowMenu.style.top = `${offset}px`;
             }
+            //Trigger the function to re-add classes and styling if something in the DOM has been changed by react
             self.changeMastheadClasses();
           })
           observer.observe(root.document.body, {
@@ -66,20 +75,25 @@ class Banner extends Component {
             subtree:true
           })
 
-          if(root.document?.querySelector('.bx--masthead')){
+          //Set up scroll handler, we'll tell the component if the scroll position is outside the banner viewport, and change any styles/classes if necessary
+          if(masthead){
             const handleScroll = root.addEventListener('scroll', () => {
               this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
+              // 400 is an arbitrary threshold where if an L1 exists it will have hidden the L0. If we're above that 400px threshold we'll want to adjust the classes + styles.
               if (root.pageYOffset < 400) {
                 this.changeMastheadClasses();
               }
             });
 
+            //Set up resize handler, we'll tell the component if the scroll position is outside the banner viewport, and change any styles/classes if necessary
             const handleResize = root.addEventListener('resize', () => {
               this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
+              // 400 is an arbitrary threshold where if an L1 exists it will have hidden the L0. If we're above that 400px threshold we'll want to adjust the classes + styles.
               if (root.pageYOffset < 400) {
                 this.changeMastheadClasses();
               }
             });
+            //Set our handlers in the state so we can destroy them correctly on dismount
             this.setState({
               ...this.state,
               handleScroll: handleScroll,
@@ -88,30 +102,33 @@ class Banner extends Component {
             })
           }
         })
+        //Call the LocaleAPI to render the correct language in the component, once fetched we'll set it in the component state
         LocaleAPI.getLocale().then(res => {
           this.setLocale(res.lc);
         })
     }
   }
 
+  // This function handles our class and styling DOM changes
   changeMastheadClasses() {
-    var i;
+
+    //Set megamenuArray as we'll manipulate it in multiple spots
+    let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
+    let megamenuLength = megamenuArray.length;
+
+    //This if statement checks if the user has scrolled outside the viewport of the banner, and adds/removes classes based on that.
     if(this.state.scrolledBelow) {
       root.document?.querySelector('.bx--masthead')?.classList.remove(`bx--masthead__announcement-adjustment`)
       root.document?.querySelector('.bx--side-nav__navigation')?.classList.remove(`bx--side-nav__announcement-adjustment`)
       root.document?.querySelector('.bx--overflow-menu-options--open')?.classList.remove(`bx--overflow-menu-options--open__announcement-adjustment`)
-      let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
-      let length = megamenuArray.length;
-      for(i = 0; i < length; i++) {
+      for(let i = 0; i < megamenuLength; i++) {
         megamenuArray[i].classList.add('bx--header__menu-announcement-adjustment')
       }
     } else {
       root.document.querySelector('.bx--masthead').classList.add(`bx--masthead__announcement-adjustment`)
       root.document?.querySelector('.bx--side-nav__navigation')?.classList.add(`bx--side-nav__announcement-adjustment`)
       root.document?.querySelector('.bx--overflow-menu-options--open')?.classList.add(`bx--overflow-menu-options--open__announcement-adjustment`)
-      let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
-      let length = megamenuArray.length;
-      for(i = 0; i < length; i++) {
+      for(let i = 0; i < megamenuLength; i++) {
         megamenuArray[i].classList.add('bx--header__menu-announcement-adjustment')
       }
     }
@@ -121,21 +138,25 @@ class Banner extends Component {
     let mastheadOffset = root.document?.querySelector('.bx--masthead--sticky.bx--masthead--sticky__l1') ? -48 : 0;
     if (root.pageYOffset < 400) {
       let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight) + mastheadOffset;
+      // The conditional below corrects for when the user has scrolled below the banner but might not have scrolled low enough for an L0 to disappear (if the L1 is available). It will set a higher offset if both are in view.
       offset = offset < (mastheadHeight + mastheadOffset) ? (mastheadHeight + mastheadOffset) : offset;
+      // Adjusting for L0 border
       offset = offset - 1;
-      let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
-      let length = megamenuArray.length;
-      for(i = 0; i < length; i++) {
+      // Grab the list of megamenu nodes, and apply the offset as their top styling
+      for(let i = 0; i < megamenuLength; i++) {
         megamenuArray[i].style.top = `${offset}px`;
       }
     }
-    if(root.document?.querySelector('.bx--overflow-menu-options--open')){
+    // This conditional checks to see if the overflow menu exists, and if it does adjust it like we do the megamenus
+    let overflowMenu = root.document?.querySelector('.bx--overflow-menu-options--open');
+    if(overflowMenu){
       let offset = bannerHeight - root.pageYOffset + (l0height)
       offset = offset < l0height ? l0height : offset;
-      root.document.querySelector('.bx--overflow-menu-options--open').style.top = `${offset}px`;
+      overflowMenu.style.top = `${offset}px`;
     }
   }
 
+  // Helper function to set the band data from the API
   setBandData(data) {
     this.setState({
       ...this.state,
@@ -143,6 +164,7 @@ class Banner extends Component {
     })
   }
 
+  // Helper function to set the locale from the API
   setLocale(data) {
     this.setState({
       ...this.state,
@@ -150,6 +172,7 @@ class Banner extends Component {
     })
   }
 
+  // Helper function to set scrolled below boolean to state
   setIsScrolledBelowAnnouncement(bool) {
     this.setState({
       ...this.state,
