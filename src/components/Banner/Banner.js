@@ -67,35 +67,19 @@ class Banner extends Component {
             childList: true,
             subtree:true
           })
+
           if(root.document?.querySelector('.bx--masthead')){
             const handleScroll = root.addEventListener('scroll', () => {
               this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
-              let mastheadOffset = root.document?.querySelector('.bx--masthead--sticky.bx--masthead--sticky__l1') ? -48 : 0;
-              console.log(mastheadOffset);
               if (root.pageYOffset < 400) {
-                let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight) + mastheadOffset;
-                offset = offset < (mastheadHeight + mastheadOffset) ? (mastheadHeight + mastheadOffset) : offset;
-                let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
-                let length = megamenuArray.length;
-                for(var i = 0; i < length; i++) {
-                  megamenuArray[i].style.top = `${offset}px`;
-                }
+                this.changeMastheadClasses();
               }
             });
 
             const handleResize = root.addEventListener('resize', () => {
               this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
-              this.changeMastheadClasses();
-              let mastheadHeight = root.document.querySelector('.bx--masthead').offsetHeight;
-              let bannerHeight = this.bannerRef.current.offsetHeight;
-              if (root.pageYOffset < 150) {
-                let offset = bannerHeight - root.pageYOffset + (mastheadHeight)
-                offset = offset < mastheadHeight ? mastheadHeight : offset;
-                let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
-                let length = megamenuArray.length;
-                for(var i = 0; i < length; i++) {
-                  megamenuArray[i].style.top = `${offset}px`;
-                }
+              if (root.pageYOffset < 400) {
+                this.changeMastheadClasses();
               }
             });
             this.setState({
@@ -144,7 +128,17 @@ class Banner extends Component {
       for(i = 0; i < length; i++) {
         megamenuArray[i].classList.add('bx--header__menu-announcement-adjustment')
       }
-
+    }
+    let mastheadHeight = root.document.querySelector('.bx--masthead').offsetHeight;
+    let mastheadOffset = root.document?.querySelector('.bx--masthead--sticky.bx--masthead--sticky__l1') ? -48 : 0;
+    if (root.pageYOffset < 400) {
+      let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight) + mastheadOffset;
+      offset = offset < (mastheadHeight + mastheadOffset) ? (mastheadHeight + mastheadOffset) : offset;
+      let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
+      let length = megamenuArray.length;
+      for(var i = 0; i < length; i++) {
+        megamenuArray[i].style.top = `${offset}px`;
+      }
     }
   }
 
