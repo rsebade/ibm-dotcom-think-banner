@@ -70,9 +70,11 @@ class Banner extends Component {
           if(root.document?.querySelector('.bx--masthead')){
             const handleScroll = root.addEventListener('scroll', () => {
               this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
-              if (root.pageYOffset < 150) {
-                let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight)
-                offset = offset < mastheadHeight ? mastheadHeight : offset;
+              let mastheadOffset = root.document?.querySelector('.bx--masthead--sticky.bx--masthead--sticky__l1') ? -48 : 0;
+              console.log(mastheadOffset);
+              if (root.pageYOffset < 400) {
+                let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight) + mastheadOffset;
+                offset = offset < (mastheadHeight + mastheadOffset) ? (mastheadHeight + mastheadOffset) : offset;
                 let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
                 let length = megamenuArray.length;
                 for(var i = 0; i < length; i++) {
