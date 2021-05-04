@@ -136,7 +136,7 @@ class Banner extends Component {
       offset = offset < (mastheadHeight + mastheadOffset) ? (mastheadHeight + mastheadOffset) : offset;
       let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
       let length = megamenuArray.length;
-      for(var i = 0; i < length; i++) {
+      for(i = 0; i < length; i++) {
         megamenuArray[i].style.top = `${offset}px`;
       }
     }
