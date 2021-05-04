@@ -26,6 +26,7 @@ class Banner extends Component {
       locale: 'en',
       scrolledBelow: false,
       adjustAmount: root.innerWidth < 850 ? 75 : 106,
+      handleResize: null,
       handleScroll: null,
       hasL1: root.document?.querySelector('.bx--masthead__l1'),
       docObserver: null
@@ -50,13 +51,14 @@ class Banner extends Component {
           }
           this.changeMastheadClasses();
           let masthead = root.document.querySelector('.bx--masthead');
-          var in_dom = root.document.body.contains(masthead);
           let self = this;
           let mastheadHeight = root.document.querySelector('.bx--masthead').offsetHeight;
+          let l0height = root.document.querySelector('.bx--masthead__l0').offsetHeight;
+          let bannerHeight = this.bannerRef.current.offsetHeight;
           var observer = new MutationObserver(function() {
             if(root.document?.querySelector('.bx--overflow-menu-options--open')){
-              let offset = this.bannerRef.current.offsetHeight - root.pageYOffset + (mastheadHeight)
-              offset = offset < mastheadHeight ? mastheadHeight : offset;
+              let offset = bannerHeight - root.pageYOffset + (l0height)
+              offset = offset < l0height ? l0height : offset;
               root.document.querySelector('.bx--overflow-menu-options--open').style.top = `${offset}px`;
             }
             self.changeMastheadClasses();
@@ -69,19 +71,35 @@ class Banner extends Component {
             const handleScroll = root.addEventListener('scroll', () => {
               this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
               if (root.pageYOffset < 150) {
-                let offset = this.bannerRef.current.offsetHeight - root.pageYOffset + (mastheadHeight)
+                let offset = this.bannerRef?.current.offsetHeight - root.pageYOffset + (mastheadHeight)
                 offset = offset < mastheadHeight ? mastheadHeight : offset;
                 let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
                 let length = megamenuArray.length;
                 for(var i = 0; i < length; i++) {
                   megamenuArray[i].style.top = `${offset}px`;
                 }
+              }
+            });
 
+            const handleResize = root.addEventListener('resize', () => {
+              this.setIsScrolledBelowAnnouncement(root.pageYOffset > this.bannerRef.current.offsetHeight, this.bannerRef.current.offsetHeight);
+              this.changeMastheadClasses();
+              let mastheadHeight = root.document.querySelector('.bx--masthead').offsetHeight;
+              let bannerHeight = this.bannerRef.current.offsetHeight;
+              if (root.pageYOffset < 150) {
+                let offset = bannerHeight - root.pageYOffset + (mastheadHeight)
+                offset = offset < mastheadHeight ? mastheadHeight : offset;
+                let megamenuArray = root.document?.querySelectorAll('.bx--header__menu')
+                let length = megamenuArray.length;
+                for(var i = 0; i < length; i++) {
+                  megamenuArray[i].style.top = `${offset}px`;
+                }
               }
             });
             this.setState({
               ...this.state,
               handleScroll: handleScroll,
+              handleResize: handleResize,
               docObserver: observer
             })
           }
@@ -151,8 +169,9 @@ class Banner extends Component {
   }
 
   componentWillUnmount() {
-  root.removeEventListener('scroll', this.state.handleScroll);
-  this.state.docObserver.disconnect();
+    root.removeEventListener('resize', this.state.handleResize);
+    root.removeEventListener('scroll', this.state.handleScroll);
+    this.state.docObserver.disconnect();
 }
 
   render() {
