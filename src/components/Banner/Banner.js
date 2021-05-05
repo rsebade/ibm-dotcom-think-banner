@@ -9,13 +9,11 @@ import React, { Component } from 'react';
 import { ArrowRight24 } from '@carbon/icons-react';
 import { Button } from 'carbon-components-react';
 import BannerAPI from '../../services/Banner/Banner';
-import LocaleAPI from '@carbon/ibmdotcom-services/es/services/Locale/Locale';
-import ddsSettings from '@carbon/ibmdotcom-utilities/es/utilities/settings/settings';
+import { LocaleAPI } from '@carbon/ibmdotcom-services';
 import root from 'window-or-global';
-import settings from 'carbon-components/es/globals/js/settings';
 
-const { stablePrefix } = ddsSettings;
-const { prefix } = settings;
+const stablePrefix = "dds";
+const prefix = "bx";
 
 class Banner extends Component {
 
