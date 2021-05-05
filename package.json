@@ -1,6 +1,6 @@
 {
   "name": "@ibmdotcom/think-banner",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This is a reusable banner to promote the Think event in IBM.com",
   "author": "ibmdotcom-bot",
   "license": "MIT",
